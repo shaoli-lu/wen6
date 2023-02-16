@@ -20,10 +20,11 @@
 
 </br>
 <form action="https://www.you.com/search" method="get" autocomplete="on" name="wen">
-    <input autofocus placeholder="youChat" name="q" type="text">
+    <input id="speech-input" autofocus placeholder="youChat" name="q" type="text">
     <input type="hidden" name="tbm" value="youchat">
+    <button type="button" id="voice-button">Voice Search</button>
     <input type="submit" name="btn" id="btn">
-    </form>
+</form>
 
 <!-- <div>News</div>
 <div class="wrap-element">
@@ -51,4 +52,46 @@
 </div>
 </body>
 <script src="wen.js" type="text/javascript"></script>
+
+<!-- <form action="https://www.you.com/search" method="get" autocomplete="on" name="wen">
+    <input id="speech-input" autofocus placeholder="youChat" name="q" type="text">
+    <input type="hidden" name="tbm" value="youchat">
+    <button type="button" id="voice-button">Voice Search</button>
+    <input type="submit" name="btn" id="btn">
+</form> -->
+
+<script>
+    // check if the Web Speech API is available
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+        // create a new SpeechRecognition object
+        var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+        // set some options
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+
+        // add an event listener to the voice search button
+        document.getElementById('voice-button').addEventListener('click', function() {
+            // start speech recognition
+            recognition.start();
+        });
+
+        // add an event listener for when speech recognition has results
+        recognition.onresult = function(event) {
+            // get the recognized text
+            var text = event.results[0][0].transcript;
+
+            // update the search input with the recognized text
+            document.getElementById('speech-input').value = text;
+
+            // submit the form
+            document.forms['wen'].submit();
+        };
+    } else {
+        // Web Speech API is not supported, so hide the voice search button
+        document.getElementById('voice-button').style.display = 'none';
+    }
+</script>
+
 </html>
