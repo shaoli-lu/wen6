@@ -1,4 +1,4 @@
 # wen6
 YouChat 
 </br>
-You.com AI search engine - a competetor of ChatGPT and Gooole.
+Powered by You.com AI chat engine - a competetor of ChatGPT and Google.
