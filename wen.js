@@ -3,5 +3,3 @@ function submitForm() {
     document.forms["wen"].submit();
 }
 pic.addEventListener('click', submitForm);
-
-
