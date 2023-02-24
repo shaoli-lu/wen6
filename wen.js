@@ -1,4 +1,4 @@
-let pic = document.getElementById("usd");
+// let pic = document.getElementById("usd");
 function submitForm() {
     document.forms["wen"].submit();
 }
